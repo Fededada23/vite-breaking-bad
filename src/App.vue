@@ -33,7 +33,7 @@ export default {
 <template lang="">
   <div class="container-yugi">
     <AppHeader message="Yu-Gi-Oh App"/>
-    <Select></Select> 
+    <AppSelect />
     <main>
       <CharactersList />
     </main>
