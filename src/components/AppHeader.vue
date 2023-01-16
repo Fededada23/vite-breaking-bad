@@ -3,7 +3,7 @@ export default {
     props: {
         message: String
     }
-    // props: ['message'], questo è una props di solo testo, si può scrivere anche così
+    
 }
 </script>
 <template>
