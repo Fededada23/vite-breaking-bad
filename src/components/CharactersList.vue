@@ -20,7 +20,7 @@ export default {
             <h2>found 39 card</h2>
         </div>
         <div class="loading" v-if="store.loading">
-            <h2>Sto credendo nel cuore delle carte</h2>
+            <h2>Loading</h2>
             <svg viewBox="0 0 50 50">
                 <circle cx="25" cy="25" r="20" />
             </svg>
