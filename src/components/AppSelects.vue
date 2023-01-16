@@ -13,9 +13,9 @@ export default {
     <div class="select-cont">
         <select v-model="value" class="form-select" aria-label="Default select example">
             <option value="" selected>Scegli il genere</option>
-            <option value="{{character.archetype}}">Alien</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option value="{{character.archetype}}">A</option>
+            <option value="2">B</option>
+            <option value="3">C</option>
         </select>
         <div v-if="value === '{{character.archetype}}'">
             <span>A</span>
@@ -27,7 +27,7 @@ export default {
             <span>C</span>
         </div>
         <div v-if="value !== '{{character.archetype}}' && value !== '2' && value !== '3'">
-            <span>Not A/B/C</span>
+            <span>Genere non selezionato</span>
         </div>
     </div>
 </template>

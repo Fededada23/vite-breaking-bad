@@ -1,14 +1,14 @@
 <script>
 import axios from 'axios'
 import AppHeader from './components/AppHeader.vue';
-import Select from './components/Select.vue';
+import AppSelects from './components/AppSelects.vue';
 import CharactersList from './components/CharactersList.vue';
 import { store } from './store.js';
 export default {
   components: {
     AppHeader,
     CharactersList,
-    Select,
+    AppSelects,
   },
   data() {
     return {
@@ -33,7 +33,7 @@ export default {
 <template lang="">
   <div class="container-yugi">
     <AppHeader message="Yu-Gi-Oh App"/>
-    <AppSelect />
+    <AppSelects />
     <main>
       <CharactersList />
     </main>
