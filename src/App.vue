@@ -1,14 +1,13 @@
 <script>
-import axios from 'axios'
-import AppHeader from './components/AppHeader.vue';
-import AppSelects from './components/AppSelects.vue';
+import axios from 'axios';
+import AppHeader from './components/AppHeader.vue'
 import CharactersList from './components/CharactersList.vue';
 import { store } from './store.js';
+// loaded
 export default {
   components: {
     AppHeader,
-    CharactersList,
-    AppSelects,
+    CharactersList
   },
   data() {
     return {
@@ -16,24 +15,21 @@ export default {
     }
   },
   created() {
-    this.getCharacters();
+    this.getCardsYuGiOh();
   },
   methods: {
-    getCharacters() {
-      axios.get(store.url).then((response) => {
-        store.charactersList = response.data.data
-        setTimeout(() => {
-          store.loading = false
-        }, 3000)
+    getCardsYuGiOh() {
+      axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php').then((response) => {
+        store.charactersList = response.data
       })
-    }
-  }
+    },
+  },
 }
 </script>
 <template lang="">
   <div class="container-yugi">
-    <AppHeader message="Yu-Gi-Oh App"/>
-    <AppSelects />
+    <AppHeader class="p-5" message="Yu-Gi-Oh App"/>
+
     <main>
       <CharactersList />
     </main>

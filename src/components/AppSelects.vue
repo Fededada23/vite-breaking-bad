@@ -1,34 +1,24 @@
-<script  lang="ts">
-import { store } from '../store.js';
+<script>
 export default {
+    name: 'AppSelects',
+    props: {
+        archetype: Object,
+    },
     data() {
         return {
-            store,
-            value: '',
+            change: "",
         }
-    }
+    },
 }
 </script>
 <template>
     <div class="select-cont">
-        <select v-model="value" class="form-select" aria-label="Default select example">
-            <option value="" selected>Scegli il genere</option>
-            <option value="{{character.archetype}}">A</option>
-            <option value="2">B</option>
-            <option value="3">C</option>
+        <select class="form-select p-1" name="select-type" id="select-type" v-model="change"
+            @change="$emit('selection', change)">
+            <option value="" disabled selected>Select archetype</option>
+            <option v-for="(value, index) in archetype" :key="index" :value="value.archetype_name">
+                {{ value.archetype_name }}</option>
         </select>
-        <div v-if="value === '{{character.archetype}}'">
-            <span>A</span>
-        </div>
-        <div v-if="value === '2'">
-            <span>B</span>
-        </div>
-        <div v-if="value === '3'">
-            <span>C</span>
-        </div>
-        <div v-if="value !== '{{character.archetype}}' && value !== '2' && value !== '3'">
-            <span>Genere non selezionato</span>
-        </div>
     </div>
 </template>
 

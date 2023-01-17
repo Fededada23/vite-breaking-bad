@@ -1,34 +1,46 @@
 <script>
 import CharacterCard from './CharacterCard.vue';
+import AppCardToGiOh from './AppCardToGiOh.vue';
+import AppSelects from './AppSelects.vue';
+import ResultMessage from './ResultMessage.vue';
 import { store } from '../store.js';
-
+import axios from 'axios';
 export default {
     components: {
         CharacterCard,
+        AppCardToGiOh,
+        AppSelects,
+        ResultMessage
     },
     data() {
         return {
             store,
-            activeItem: 0,
         }
     },
+    methods: {
+        select_archetype(value) {
+            axios.get(`https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=${value}`).then((response) => {
+                store.cards = response.data.data;
+                store.loading = false;
+            })
+        }
+    }
 }
 </script>
 <template lang="">
     <div class="container_select">
         <div class="found">
-            <h2>found 39 card</h2>
+            <AppSelects :archetype="store.charactersList" @selection="select_archetype" />
+           <ResultMessage />
         </div>
         <div class="loading" v-if="store.loading">
-            <h2>Loading</h2>
+            <h2>loading</h2>
             <svg viewBox="0 0 50 50">
                 <circle cx="25" cy="25" r="20" />
             </svg>
         </div>
-        <div v-else>
-            <div class="container_card flex-wrap">
-                <CharacterCard v-for="(item, index) in store.charactersList" :key="index" :character="item"/>
-            </div>
+        <div v-else> 
+            <CharacterCard />
         </div>
     </div>
 </template>
@@ -37,6 +49,7 @@ export default {
 @use '../styles/partials/mixins' as *;
 .container_select {
     background-color: white;
+    margin-bottom: 2em;
     .container_card {
         @include between;
     }
